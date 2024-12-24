@@ -1,0 +1,27 @@
+<div class="content-wrapper">
+  <div class="input"> 
+    <span class="text">Input File: </span>
+    <input type="file" class="input file" (change)="onFileSelected($event)">
+    <button class="button send" (click)="recognizeLanguage()">Send</button>
+  </div>
+
+  <div class="menu" (click)="toggleMenu()">
+    Menu
+  </div>
+
+  <div class="methods-list" *ngIf="isMenuOpen">
+    <div class="methods" *ngFor="let method of methods">
+      <div class="method" (click)="chooseMethod(method)">{{ method }} </div>
+    </div>
+  </div>
+
+  <div class="result" *ngIf="language">
+    <span> Language: {{ language.label }} </span>
+    <span> Probability {{ language.score }} </span>
+    <span (click)="toggleFileContent()">Show filecontent</span>
+
+    <div class="filecontent" *ngIf="isFileContentOpen">
+      {{ language.filecontent }}
+    </div>
+  </div>
+</div>
